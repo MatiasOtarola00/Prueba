@@ -7,12 +7,8 @@ def crear_empleado(nombre, direccion, telefono, email, fecha_inicio, salario):
     if conn is None:
         return
     cursor = conn.cursor()
-    consulta = """
-        INSERT INTO empleados (nombre, direccion, telefono, email, fecha_inicio, salario)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """
-    cursor.execute(consulta, (nombre, direccion, telefono, email, fecha_inicio, salario))
-    conn.commit()  # Confirmar la transacción
+    cursor.execute("INSERT INTO empleados (nombre, direccion, telefono, email, fecha_inicio, salario) VALUES (%s, %s, %s, %s, %s, %s)", (nombre, direccion, telefono, email, fecha_inicio, salario))
+    conn.commit()
     cursor.close()
     conn.close()
     print("Empleado creado exitosamente.")
@@ -27,7 +23,7 @@ def obtener_empleados():
     empleados = cursor.fetchall()
     cursor.close()
     conn.close()
-    return empleados  # Retorna la lista de empleados
+    return empleados
 
 def buscar_empleado_por_id(empleado_id):
     """Función para buscar un empleado por su ID."""

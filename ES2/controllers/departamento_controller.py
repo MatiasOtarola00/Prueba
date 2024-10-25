@@ -24,17 +24,6 @@ def obtener_departamentos():
     conn.close()
     return departamentos
 
-def buscar_departamento_por_id(departamento_id):
-    conn = conectar()
-    if conn is None:
-        return None
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM departamentos WHERE id = %s", (departamento_id,))
-    departamento = cursor.fetchone()
-    cursor.close()
-    conn.close()
-    return departamento
-
 def actualizar_departamento(departamento_id, nombre, gerente_id=None):
     conn = conectar()
     if conn is None:
